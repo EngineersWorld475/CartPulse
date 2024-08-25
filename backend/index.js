@@ -5,6 +5,9 @@ const { notFound, errorHandler } = require('./middlewares/errorHandler');
 const authRouter = require('./routes/authRoutes');
 const dbConnect = require('./config/dbConnect');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 dbConnect();
 dotenv.config();
 app.use(bodyParser.json());
