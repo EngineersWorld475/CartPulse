@@ -11,7 +11,6 @@ const authMiddleWare = asyncHandler(async (req, res, next) => {
       const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
       const user = await User.findById(decode?.id);
       req.user = user;
-      console.log('...req.user', req.user);
       next();
     } catch (error) {
       throw new Error('Token expired...Please login again');
@@ -22,7 +21,6 @@ const authMiddleWare = asyncHandler(async (req, res, next) => {
 });
 
 const isAdmin = asyncHandler(async (req, res, next) => {
-  console.log('....admin', req.user);
   const { email } = req.user;
   const user = await User.findOne({ email });
   if (user.role !== 'admin') {
