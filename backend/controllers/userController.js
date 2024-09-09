@@ -36,14 +36,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (currentUser && (await currentUser.isPasswordMatched(password))) {
     const token = generateToken(currentUser._id);
-    res.cookie('authToken', token, {
-      httpOnly: true,
-    });
     return res.json({
       firstName: currentUser?.firstName,
       lastName: currentUser?.lastName,
       email: currentUser?.email,
       mobile: currentUser?.mobile,
+      authToken: token,
     });
   } else {
     throw new Error('Invalid Credentials');
@@ -63,7 +61,7 @@ const getAllUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).select('-password');
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message || 'Server error' });
@@ -72,7 +70,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 const deleteUser = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.user;
     const user = await User.findById(id);
     if (!user) {
       throw new Error('User not found');
@@ -86,14 +84,14 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.params;
+    const { _id } = req.user;
     const { firstName, lastName, password, email, mobile } = req.body;
-    const user = await User.findById(id);
+    const user = await User.findById(_id);
     if (!user) {
       throw new Error(`User not found`);
     }
     const updatedUser = await User.findByIdAndUpdate(
-      id,
+      _id,
       {
         $set: {
           firstName,
