@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-131921: #131921;
+  --color-3b4149: #0d1b2a;
+  --color-ffcc00: #cd872b;
+  --color-232f3e: #232f3e;
+}
+body {
+  font-family: 'Arial', sans-serif;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+/* Header part */
+.header-top-strip {
+  background-color: var(--color-131921);
+  border-bottom: 1px solid white;
+}
+.header-upper {
+  background-color: var(--color-3b4149);
+}
+.btn-outline-secondary {
+  background-color: var(--color-ffcc00);
+  color: #fff;
+}
+.cartpulse {
+  display: flex;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+.cartpulse-text {
+  background-color: #f8f9fa; /* Light background color */
+  color: #333; /* Dark text color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.cartpulse-logo {
+  margin-left: 5px; /* Space between "Cart" and "pulse." */
+  color: #ffffff; /* White color for contrast */
+  font-weight: normal;
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.cartpulse:hover .cartpulse-text {
+  background-color: #e9ecef; /* Slightly darker background on hover */
+}
+
+.cartpulse:hover .cartpulse-logo {
+  color: #f0f0f0; /* Slightly lighter text color on hover */
+}
+.input-group {
+  margin-right: 15px; /* Space between search bar and header links */
+}
+.header-bottom {
+  background-color: var(--color-232f3e);
+}
+.menu-links {
+  text-transform: uppercase;
+  font-size: small;
+}
+.dropdown-toggle {
+  border: none;
+}
+.dropdown-toggle:focus {
+  border: none;
+}
+.dropdown-menu {
+  background-color: var(--color-232f3e);
+}
+.dropdown-item {
+  color: #fff;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+/* Header part ends here */
